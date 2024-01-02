@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+<div class="container">
+    <div class="form_group">
+    <h1 class="display-2">Edit Pet</h1>
+    
+    
+        <form action="/submit_form_for_edit/{{pet.id}}", method="POST">
+        {{ form.hidden_tag() }}
+            
+        {% for field in form if field.widget.input_type != 'hidden'%}
+        <div class="row">
+            <div class="col-6"
+                <p class="display-8">
+                    {{field.label}}
+                    {{field(class="form-control")}}
+
+                    {% for err in field.errors %}
+                    {{err}}
+                    {% endfor %}
+                </p>
+            </div>
+        </div>
+        {% endfor %}
+        <button class="btn btn-dark">Submit</button>
+        </form>
+    </div>
+
+</div>
+
+
+
+
+{% endblock %}
